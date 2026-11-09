@@ -5,37 +5,40 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Starting Jenkins Pipeline'
-                echo 'Checking out GitHub repository'
+                echo 'Downloading source code from GitHub'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Build stage executed successfully'
+                echo 'Checking Linux environment'
+                sh 'whoami'
+                sh 'pwd'
+                sh 'git --version'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Test stage executed successfully'
+                echo 'Checking project files'
+                sh 'ls -la'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploy stage executed successfully'
+                echo 'Deployment preparation completed'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline completed successfully!'
+            echo 'CI/CD Pipeline completed successfully!'
         }
 
         failure {
-            echo 'Pipeline failed!'
+            echo 'Pipeline execution failed!'
         }
     }
 }
